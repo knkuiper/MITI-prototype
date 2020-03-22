@@ -1,3 +1,5 @@
+// prototype 1 with blinking LED; programmed by George
+
 bool isLedOn = false;
 unsigned long time;
 int greenLedPin=3;
