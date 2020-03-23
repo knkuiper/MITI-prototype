@@ -21,12 +21,10 @@ void loop() {
   ButtonRead();
 }
 
-
 bool isLedAvailableToTurnOn(){
   if(time > newTimeToTurnOnLed){
     return true;
   }
-
   return false;
 }
 
