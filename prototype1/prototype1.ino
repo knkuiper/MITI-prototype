@@ -1,30 +1,40 @@
 // prototype 1 with blinking LED; programmed by George
 
+#define NUMBEROFEXERCISES 3
+String Exercises[NUMBEROFEXERCISES] = {"test 1", "test 2", "test 3"};
+String exerciseMessage;
+
 bool isLedOn = false;
-unsigned long time;
+unsigned long currentMillis;
 int greenLedPin=9;
-int buttonPin=7;
+int buttonPin=8;
 unsigned long interval = 3000; //in milliseconds
-unsigned long newTimeToTurnOnLed = interval;
+unsigned long millisToTurnOnLed = interval;
 int buttonState = 0;
-// the setup function runs once when you press reset or power the board
+int previousButtonState = 0;
+
+
 void setup() {
   Serial.begin(9600);
-  // initialize digital pin LED_BUILTIN as an output.
+  
   pinMode(buttonPin, INPUT);
 }
 
-// the loop function runs over and over again forever
+
 void loop() {  
-  time = millis();
+  currentMillis = millis();
   TurnOnLed();
   ButtonRead();
+
+  exerciseMessage = GenerateExerciseMessage(previousButtonState, buttonState);  
 }
 
+
 bool isLedAvailableToTurnOn(){
-  if(time > newTimeToTurnOnLed){
+  if(currentMillis > millisToTurnOnLed){
     return true;
   }
+
   return false;
 }
 
@@ -36,16 +46,24 @@ void TurnOffLed(){
 void TurnOnLed(){
   if(isLedAvailableToTurnOn()){
     isLedOn = true;
-    analogWrite(greenLedPin, 80);
+    analogWrite(greenLedPin, 20);
   }
 }
 
 void ButtonRead(){
+  previousButtonState = buttonState;
+
   if(isLedOn){
     buttonState = digitalRead(buttonPin);
     if(buttonState == LOW){
-      newTimeToTurnOnLed = time + interval;
+      millisToTurnOnLed = currentMillis + interval;
       TurnOffLed();
     }
-  }  
+  }
+}
+
+String GenerateExerciseMessage(int previousButtonState, int buttonState){
+  if(previousButtonState == 1 && buttonState == 0){
+    return Exercises[random(NUMBEROFEXERCISES)];
+  }
 }
