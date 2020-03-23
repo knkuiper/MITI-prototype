@@ -2,8 +2,8 @@
 
 bool isLedOn = false;
 unsigned long time;
-int greenLedPin=3;
-int buttonPin=2;
+int greenLedPin=9;
+int buttonPin=7;
 unsigned long interval = 3000; //in milliseconds
 unsigned long newTimeToTurnOnLed = interval;
 int buttonState = 0;
