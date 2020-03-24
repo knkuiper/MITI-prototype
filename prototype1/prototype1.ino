@@ -1,4 +1,5 @@
 // prototype 1 with blinking LED; programmed by George
+#include <LiquidCrystal.h>
 
 #define NUMBEROFEXERCISES 3
 String Exercises[NUMBEROFEXERCISES] = {"test 1", "test 2", "test 3"};
@@ -13,11 +14,16 @@ unsigned long millisToTurnOnLed = interval;
 int buttonState = 0;
 int previousButtonState = 0;
 
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
 
 void setup() {
   Serial.begin(9600);
   
   pinMode(buttonPin, INPUT);
+  
+  lcd.begin(16, 2);
 }
 
 
@@ -26,7 +32,7 @@ void loop() {
   TurnOnLed();
   ButtonRead();
 
-  exerciseMessage = GenerateExerciseMessage(previousButtonState, buttonState);  
+  GenerateExerciseMessage(previousButtonState, buttonState);
 }
 
 
@@ -62,8 +68,9 @@ void ButtonRead(){
   }
 }
 
-String GenerateExerciseMessage(int previousButtonState, int buttonState){
+void GenerateExerciseMessage(int previousButtonState, int buttonState){
   if(previousButtonState == 1 && buttonState == 0){
-    return Exercises[random(NUMBEROFEXERCISES)];
+    lcd.clear();
+    lcd.print(Exercises[random(NUMBEROFEXERCISES)]);
   }
 }
