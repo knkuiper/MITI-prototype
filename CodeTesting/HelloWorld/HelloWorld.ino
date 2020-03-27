@@ -55,5 +55,5 @@ void loop() {
   // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 1);
   // print the number of seconds since reset:
-  lcd.print("Flattn the curve!");
+  lcd.print("heia");
 }

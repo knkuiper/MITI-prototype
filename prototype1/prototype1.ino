@@ -1,14 +1,14 @@
 // prototype 1 with blinking LED; programmed by George
 #include <LiquidCrystal.h>
 
-#define NUMBEROFEXERCISES 3
-String Exercises[NUMBEROFEXERCISES] = {"test 1", "test 2", "test 3"};
+#define NUMBEROFEXERCISES 4
+String Exercises[NUMBEROFEXERCISES] = {"Do some streches", "Do 10 squats", "Take a walk", "Take 5 pushups"};
 String exerciseMessage;
 
 bool isLedOn = false;
 unsigned long currentMillis;
 int greenLedPin=9;
-int buttonPin=8;
+int buttonPin=7;
 unsigned long interval = 3000; //in milliseconds
 unsigned long millisToTurnOnLed = interval;
 int buttonState = 0;
