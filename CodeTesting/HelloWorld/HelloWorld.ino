@@ -47,7 +47,7 @@ void setup() {
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // Print a message to the LCD.
-  lcd.print("Stay inside!");
+  lcd.print("Flattn the curve");
 }
 
 void loop() {
@@ -55,5 +55,5 @@ void loop() {
   // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 1);
   // print the number of seconds since reset:
-  lcd.print("heia");
+  lcd.print("Stay inside!");
 }
